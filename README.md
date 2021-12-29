@@ -1,10 +1,35 @@
-# ping-exporter
+# Ping-Exporter
+ping-exporter requires [Python2](https://www.python.org/downloads/release/python-2718/) v2.7.18 to run & fping v4.x
 
-## Installation
+## Installation Ping-Exporter:
 
-ping-exporter requires [Python2](https://www.python.org/downloads/release/python-2718/) v2.7.18 to run.
+```sh
+chmod 755 /path/ping-exporter.py
+```
 
-Steps:
+```sh
+[Unit]
+Description=Ping Exporter for Prometheus
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python /path/ping-exporter.py
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```sh
+systemctl daemon-reload
+```
+
+```sh
+systemctl start ping_exporter.service
+systemctl enable ping_exporter.service
+```
+
+## Installation Prometheus:
 
 ```sh
 useradd --no-create-home --shell /bin/false prometheus
