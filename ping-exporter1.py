@@ -11,7 +11,6 @@ import pandas as pd
 from datetime import datetime
 from sqlalchemy import create_engine
 from pandas.io import sql
-import sqlalchemy
 
 def insert_df_to_db(df,engine,table,schema):
     # df = pd.read_csv(df, encoding='iso-8859-1', low_memory=False)
