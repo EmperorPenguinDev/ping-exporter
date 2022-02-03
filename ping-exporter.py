@@ -70,7 +70,7 @@ def ping(host, prot, interval, count, size, source):
     df_loss = [loss]
     df = pd.DataFrame(list(zip(df_timeping,df_source,df_host,df_avg,df_max,df_min,df_loss)), index=None, columns=columns)
     # insert_df_to_db(df, 'postgresql://oss_admin:9k98CYuTR962RDu2@10.1.51.16:5432/connecta', 'ping_enp1s0','ping')
-    insert_df_to_db(df, 'postgresql://postgres:posthaste@18.141.59.86:5433/netview', 'ping_enp1s0','netsight_ping')
+    insert_df_to_db(df, 'postgresql://postgres:posthaste@18.141.59.86:5433/netview', 'ping_enp2s0','netsight_ping')
 
     # print df
 

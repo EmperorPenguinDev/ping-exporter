@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-from SocketServer import ThreadingMixIn
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from socketserver import ThreadingMixIn
 import threading
 import sys
 import subprocess
-from urlparse import parse_qs, urlparse
+import urllib.parse
 import logging
 import os
 import pandas as pd
@@ -69,10 +69,8 @@ def ping(host, prot, interval, count, size, source):
     df_min = [min]
     df_loss = [loss]
     df = pd.DataFrame(list(zip(df_timeping,df_source,df_host,df_avg,df_max,df_min,df_loss)), index=None, columns=columns)
-    # insert_df_to_db(df, 'postgresql://oss_admin:9k98CYuTR962RDu2@10.1.51.16:5432/connecta', 'ping_enp2s0','ping')
-    insert_df_to_db(df, 'postgresql://postgres:posthaste@18.141.59.86:5433/netview', 'ping_enp2s0','netsight_ping')
-
-    # print df
+    # insert_df_to_db(df, 'postgresql://oss_admin:9k98CYuTR962RDu2@10.1.51.16:5432/connecta', 'ping_enp1s0','ping')
+    insert_df_to_db(df, 'postgresql://postgres:posthaste@18.141.59.86:5433/netview', 'ping_enp1s0','netsight_ping')
 
     return output
 
@@ -133,7 +131,7 @@ if __name__ == '__main__':
     if len(sys.argv) >= 3:
         port = int(sys.argv[2])
     else:
-        port = 8086
+        port = 8085
     logger.info('Starting server port {}, use <Ctrl-C> to stop'.format(port))
     server = ThreadedHTTPServer(('0.0.0.0', port), GetHandler)
     server.serve_forever()
